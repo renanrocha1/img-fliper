@@ -50,10 +50,10 @@ async function processImage(direction: string) {
             <h3 class="mb-4">Alterada</h3>
           </image-container>
         </div>
-        <div class="row mt-2">
+        <div class="row mt-2 g-3">
           <image-controls :processImage="processImage"/>
-          <div class="col-2 d-flex justify-content-center">
-            <button class="btn btn-danger h-100 fs-5" @click="reset">
+          <div class="col d-flex justify-content-center">
+            <button style="min-width: 75%;" class="btn btn-danger h-100 fs-5" @click="reset">
               <i class="nf nf-fa-xmark fs-2"></i><br>Resetar
             </button>
           </div>

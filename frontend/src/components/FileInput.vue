@@ -1,6 +1,6 @@
 <template>
     <div id="file-input" class="d-flex justify-content-center align-items-center border border-5 rounded-5 border-primary-subtle p-5" @dragover.prevent @dragenter.prevent @drop="onDrop">
-        <label for="file">Arraste sua imagem aqui ou escolha um arquivo</label>
+        <label class="btn btn-link" for="file">Arraste sua imagem aqui ou escolha um arquivo</label>
         <input ref="input" class="d-none" type="file" name="file" id="file" @change="previewChange">
     </div>
 </template>
