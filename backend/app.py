@@ -22,7 +22,7 @@ def flip_image(direction: Direction, file: UploadFile, response: Response):
         img = Image.open(file.file)
         img = process_image(img, direction)
         byte_arr = BytesIO()
-        img.save(byte_arr, format=get_name_extension(file.filename)[1].removeprefix('.'))
+        img.save(byte_arr, format=get_format(get_name_extension(file.filename)[1]))
         return Response(byte_arr.getvalue(), media_type=guess_type(file.filename)[0])
     else:
         response.status_code = status.HTTP_400_BAD_REQUEST
@@ -32,3 +32,6 @@ def process_image(img: Image.Image, direction: Direction):
     if direction in [Direction.UP, Direction.LEFT]:
         return img.transpose(direction.get_transpose())
     return img.rotate(direction.get_rotation(), expand=True)
+
+def get_format(ext: str):
+    return Image.registered_extensions()[ext]

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import axios from 'axios'
+import axios from "axios";
 import ImageContainer from "./components/ImageContainer.vue";
 import FileInput from "./components/FileInput.vue";
 import ImageControls from "./components/ImageControls.vue";
+import Navbar from "./components/Navbar.vue";
 
 const preview = ref<string>()
 const result = ref<string>()
@@ -15,6 +16,13 @@ function previewImage(previewSrc: string, file: File) {
   result.value = previewSrc
   srcFile.value = file
   destFile.value = file
+}
+
+function reset() {
+  preview.value = undefined;
+  result.value = undefined;
+  srcFile.value = undefined;
+  destFile.value = undefined;
 }
 
 async function processImage(direction: string) {
@@ -31,13 +39,7 @@ async function processImage(direction: string) {
 <template>
   
   <div class="d-flex flex-column content">
-    <header>
-      <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-          <h1 class="navbar-brand mb-0 h1 text-center">Image Flip</h1>
-        </div>
-      </nav>
-    </header>
+    <navbar class="mb-3"/>
     <div class="container-fluid flex-grow-1 row align-items-center justify-content-center ">
       <template v-if="preview">
         <div class="row d-flex">
@@ -48,8 +50,13 @@ async function processImage(direction: string) {
             <h3 class="mb-4">Alterada</h3>
           </image-container>
         </div>
-        <div class="row">
+        <div class="row mt-2">
           <image-controls :processImage="processImage"/>
+          <div class="col-2 d-flex justify-content-center">
+            <button class="btn btn-danger h-100 fs-5" @click="reset">
+              <i class="nf nf-fa-xmark fs-2"></i><br>Resetar
+            </button>
+          </div>
         </div>
       </template>
       <template v-else>

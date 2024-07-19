@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineEmits, ref } from "vue";
+import { ref } from "vue";
 const input = ref<HTMLInputElement>()
 const emit = defineEmits(['previewChange'])
 
